@@ -56,7 +56,8 @@ public class DetailFragment extends Fragment {
             getInput();
         } else {
             getInput();
-            mListener.onFragmentFinish(mFirstName, mLastName, mAge);
+            Person person = new Person (mFirstName, mLastName, mAge);
+            mListener.onFragmentFinish(person);
         }
     }
 
@@ -67,7 +68,7 @@ public class DetailFragment extends Fragment {
     }
 
     public interface FragmentListener {
-        void onFragmentFinish (String firstName, String lastName, int age);
+        void onFragmentFinish (Person person);
     }
 
 

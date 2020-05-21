@@ -19,7 +19,7 @@ public class DetailActivity extends AppCompatActivity implements DetailFragment.
     }
 
     @Override
-    public void onFragmentFinish(String firstName, String lastName, int age) {
-        Log.i("DetailActivity", "onFragmentFinish: " + age);
+    public void onFragmentFinish(Person person) {
+        Log.i("DetailActivity", "onFragmentFinish: " + person.getAge());
     }
 }
