@@ -42,15 +42,18 @@ public class MainActivity extends AppCompatActivity implements DetailFragment.Fr
 
     private void viewDetailFragment() {
 
+        Person person = new Person ("Louie", "W", 35);
+
         if (mTablet) {
+            DetailFragment fragment = DetailFragment.newInstance(person);
             FragmentManager fragmentManager =
                     getSupportFragmentManager();
-            DetailFragment fragment = new DetailFragment();
             fragmentManager.beginTransaction()
                     .add(R.id.detail_fragment_container, fragment)
                     .commit();
         } else {
             Intent intent = new Intent(this, DetailActivity.class);
+            intent.putExtra("PERSON_KEY", person);
             startActivity(intent);
         }
     }

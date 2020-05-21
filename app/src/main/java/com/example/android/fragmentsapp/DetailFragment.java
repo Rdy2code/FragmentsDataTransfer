@@ -21,6 +21,17 @@ public class DetailFragment extends Fragment {
     public DetailFragment() {
     }
 
+    //To receive data from the Activity
+    //To pass the Person object in a bundle, need to implement the parcelable interface in the Person POJO
+    public static DetailFragment newInstance(Person person) {
+        Bundle args = new Bundle();
+        //Bundle the Person data object
+        args.putParcelable("PERSON_KEY", person);
+        DetailFragment fragment = new DetailFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -40,6 +51,11 @@ public class DetailFragment extends Fragment {
         textFirstName = (EditText) rootView.findViewById(R.id.textFirstName);
         textLastName = (EditText) rootView.findViewById(R.id.textLastName);
         textAge = (EditText) rootView.findViewById(R.id.textAge);
+
+        Person person = getArguments().getParcelable("PERSON_KEY");
+        textFirstName.setText(person.getFirstName());
+        textLastName.setText(person.getLastName());
+        textAge.setText(String.valueOf(person.getAge()));
 
         Button doneButton = (Button) rootView.findViewById(R.id.done_button);
         doneButton.setOnClickListener(new View.OnClickListener() {
